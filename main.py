@@ -14,9 +14,7 @@ def get_an_age(year_of_creation):
 
 
 def get_category_titles(sorted_categories):
-    titles = []
-    for drink in sorted_categories:
-        titles.append(drink)
+    titles = [ drink for drink in sorted_categories]
 
     return titles
 
@@ -67,3 +65,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
