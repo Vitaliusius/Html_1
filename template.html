@@ -110,45 +110,43 @@
             <h2 class="d-block">Коллекция вин</h2>
             <p>Вино — один из самых благородных и многогранных напитков в мире! Виноделие берёт своё начало с незапамятных времён. Вино упоминается в Библии и Коране, греческой и римской мифологии, где были свои боги вина (к примеру, Дионис). Стоит отметить, что почти у каждого народа существует своя легенда, повествующая о появлении божественного эликсира — вина.
             </p>
-          {% for drinks in titles_drinks %}
-            <h2 class="d-block">{{drinks}}</h2>          
-        <div class="row">
-            {% for drink in sorted_categories[drinks] %} 
-            <h2 class="d-block">{{drink['Категориря']}}</h2>
-          <div class="col-lg-4 mb-5 col-md-6">
-            <div class="wine_v_1 text-center pb-4 pt-5">
-            {% if drink['Акция'] %}
-              <img src="images/{{drink['Картинка']}}" alt="Image" class="img-fluid">
-              <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
-            {% else %}
-              <img src="images/{{drink['Картинка']}}" alt="Image" class="img-fluid">
-            {% endif %}
-              <div>
-                <h3 class="heading mt-3 mb-3 text-dark">{{drink['Название']}}</h3>
-              {% if drink['Сорт'] %}
-                <p>
-                  Сорт винограда {{drink['Сорт']}}<br/>
-              {% else %}
-                <p>
-              {% endif %}
-                  <span class="price">{{drink['Цена']}} р.</span>
-                </p>
-              </div>
-            </div>
+            {% for category, beverage_data in sorted_categories %}
+              <h2 class="d-block">{{category}}</h2>          
+                <div class="row">
+                  {% for drink_data in beverage_data %} 
+                    <h2 class="d-block">{{drink_data['Категориря']}}</h2>
+                      <div class="col-lg-4 mb-5 col-md-6">
+                        <div class="wine_v_1 text-center pb-4 pt-5">
+                          {% if drink_data['Акция'] %}
+                            <img src="images/{{drink_data['Картинка']}}" alt="Image" class="img-fluid">
+                            <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
+                          {% else %}
+                            <img src="images/{{drink_data['Картинка']}}" alt="Image" class="img-fluid">
+                          {% endif %}
+                            <div>
+                              <h3 class="heading mt-3 mb-3 text-dark">{{drink_data['Название']}}</h3>
+                              {% if drink_data['Сорт'] %}
+                                <p>
+                                  Сорт винограда {{drink_data['Сорт']}}<br/>
+                              {% endif %}
+                                  <span class="price">{{drink_data['Цена']}} р.</span>
+                                </p>
+                            </div>
+                        </div>
+                      </div>
+                  {% endfor %}  
+                </div>
+            {% endfor %}
           </div>
-            {% endfor %}  
-          </div>
-        {% endfor %}
         </div>
-        </div>
-    </div>
+      </div>
     <div class="hero-2" style="background-image: url('assets/hero_2.jpg');">
     <div><a id="feedback"></a></div>
      <div class="container">
         <div class="row justify-content-center text-center align-items-center">
           <div class="col-md-8">
             <h2 style="font-size: 3rem;">проверено временем</h2>
-            <span class="sub-title" style="font-size: 2.5rem;">Уже {{old}} с вами</span>
+            <span class="sub-title" style="font-size: 2.5rem;">Уже {{age}} с вами</span>
           </div>
         </div>
       </div>
