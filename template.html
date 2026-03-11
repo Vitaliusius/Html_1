@@ -110,26 +110,24 @@
             <h2 class="d-block">Коллекция вин</h2>
             <p>Вино — один из самых благородных и многогранных напитков в мире! Виноделие берёт своё начало с незапамятных времён. Вино упоминается в Библии и Коране, греческой и римской мифологии, где были свои боги вина (к примеру, Дионис). Стоит отметить, что почти у каждого народа существует своя легенда, повествующая о появлении божественного эликсира — вина.
             </p>
-            {% for category, beverage_data in sorted_categories %}
+            {% for category, beverage_params in sorted_categories %}
               <h2 class="d-block">{{category}}</h2>          
                 <div class="row">
-                  {% for drink_data in beverage_data %} 
-                    <h2 class="d-block">{{drink_data['Категориря']}}</h2>
+                  {% for parameter in beverage_params %} 
+                    <h2 class="d-block">{{parameter['Категориря']}}</h2>
                       <div class="col-lg-4 mb-5 col-md-6">
                         <div class="wine_v_1 text-center pb-4 pt-5">
-                          {% if drink_data['Акция'] %}
-                            <img src="images/{{drink_data['Картинка']}}" alt="Image" class="img-fluid">
+                          {% if parameter['Акция'] %}
                             <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
-                          {% else %}
-                            <img src="images/{{drink_data['Картинка']}}" alt="Image" class="img-fluid">
                           {% endif %}
-                            <div>
-                              <h3 class="heading mt-3 mb-3 text-dark">{{drink_data['Название']}}</h3>
-                              {% if drink_data['Сорт'] %}
+                            <img src="images/{{parameter['Картинка']}}" alt="Image" class="img-fluid">
+                              <div>
+                              <h3 class="heading mt-3 mb-3 text-dark">{{parameter['Название']}}</h3>
+                              {% if parameter['Сорт'] %}
                                 <p>
-                                  Сорт винограда {{drink_data['Сорт']}}<br/>
+                                  Сорт винограда {{parameter['Сорт']}}<br/>
                               {% endif %}
-                                  <span class="price">{{drink_data['Цена']}} р.</span>
+                                  <span class="price">{{parameter['Цена']}} р.</span>
                                 </p>
                             </div>
                         </div>
