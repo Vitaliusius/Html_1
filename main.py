@@ -45,13 +45,15 @@ def main():
         loader=FileSystemLoader('.'),
         autoescape=select_autoescape(['html', 'xml'])
     )
-    path_table = os.getenv('PATH_TABLE', default = 'drinks.xlsx')
+    path_table = os.getenv('PATH_TABLE', default='drinks.xlsx')
     template = env.get_template('template.html')
     drinks_in_excel = pandas.read_excel(path_table, keep_default_na=False)
     all_drinks = drinks_in_excel.to_dict(orient='records')
     sorted_categories = get_sorting_categories(all_drinks)
     rendered_page = template.render(
-        age=get_age_label(get_an_age(CREATION_YEAR)),
+        age=get_age_label(
+            get_an_age(CREATION_YEAR)
+            ),
         sorted_categories=sorted_categories.items(),
         )
 
